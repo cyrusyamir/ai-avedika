@@ -1,9 +1,15 @@
 ---
-title: Senior Frontend Engineer
+title: test job
 summary: We craft bold, high-performance web experiences and need an engineer who obsesses over the details.
+highlights:
+  - React + TypeScript
+  - Fully remote
+  - Design to production
 order: 1
-link: mailto:info.ai@avedika.com?subject=Senior Frontend Engineer application
+link: https://tally.so/r/rjRkv5
 ---
+
+## Key Responsibilities
 
 - Ship polished React + TypeScript interfaces
 - Own features from design to production

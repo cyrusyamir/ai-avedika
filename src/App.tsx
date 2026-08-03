@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
+import About from './pages/About'
 import Jobs from './pages/Jobs'
 import JobDetail from './pages/JobDetail'
 import Projects from './pages/Projects'
@@ -21,6 +22,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:slug" element={<JobDetail />} />
         <Route path="/projects" element={<Projects />} />

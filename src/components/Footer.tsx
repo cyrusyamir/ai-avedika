@@ -5,16 +5,16 @@ import { SITE_NAME, CONTACT_EMAIL, JOBS_EMAIL, SITE_TAGLINE } from '../lib/site'
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white">
-      <div className="p-6 sm:p-10 flex flex-wrap items-center justify-start gap-x-10 gap-y-5">
-        <div className="flex flex-col gap-3">
+      <div className="p-6 sm:p-10 flex flex-col sm:flex-row sm:items-start flex-wrap items-center justify-between gap-8 sm:gap-10">
+        <div className="flex flex-col items-center sm:items-start gap-3">
           <div className="flex items-center gap-3">
             <Logo />
             <span className="text-lg font-semibold tracking-tight text-black">{SITE_NAME}</span>
           </div>
-          <p className="text-sm text-gray-600 max-w-xs">{SITE_TAGLINE}</p>
+          <p className="text-sm text-gray-600 max-w-xs text-center sm:text-left">{SITE_TAGLINE}</p>
         </div>
 
-        <div className="flex flex-col gap-1 text-sm">
+        <div className="flex flex-col items-center sm:items-start gap-1 text-sm">
           <span className="text-xs uppercase tracking-wider text-gray-400">General</span>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
@@ -28,8 +28,8 @@ export default function Footer() {
           </a>
         </div>
 
-        <nav className="flex flex-col gap-y-2 text-sm">
-          <span className="text-xs uppercase tracking-wider text-gray-400">Menu</span>
+        <nav className="flex flex-col items-center sm:items-end gap-y-2 text-sm">
+          <span className="text-xs uppercase tracking-wider text-gray-400">Additional links</span>
           <Link to="/terms" className="font-bold text-gray-900 hover:text-black transition-colors">
             Terms & Conditions
           </Link>

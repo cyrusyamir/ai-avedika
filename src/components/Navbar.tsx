@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import Logo from './Logo'
-import { useForm } from '../context/FormContext'
+import { TALLY_ATTRS } from '../lib/tally'
 import { DOMAINS, DOMAIN_SLUGS, type Domain } from '../lib/projects'
-import { smoothScrollTo } from '../lib/scroll'
 
-const NAV_ITEMS: { label: string; type: 'section' | 'page'; target: string }[] = [
-  { label: 'Our story', type: 'section', target: 'about' },
-  { label: 'Expertise', type: 'page', target: '/projects' },
-  { label: 'Our work', type: 'page', target: '/jobs' },
+const NAV_ITEMS: { label: string; target: string }[] = [
+  { label: 'Our story', target: '/about' },
+  { label: 'Expertise', target: '/projects' },
+  { label: 'Apply for work', target: '/jobs' },
 ]
 
 export default function Navbar() {
-  const { openForm } = useForm()
   const navigate = useNavigate()
-  const location = useLocation()
   const [domainsOpen, setDomainsOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const domainsRef = useRef<HTMLDivElement>(null)
@@ -34,19 +31,9 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  const goSection = (id: string) => {
-    if (location.pathname === '/') {
-      smoothScrollTo(id)
-    } else {
-      navigate('/')
-      setTimeout(() => smoothScrollTo(id), 60)
-    }
-  }
-
   const onNavItem = (item: (typeof NAV_ITEMS)[number]) => {
     setMobileOpen(false)
-    if (item.type === 'page') navigate(item.target)
-    else goSection(item.target)
+    navigate(item.target)
   }
 
   const selectDomain = (domain: Domain) => {
@@ -57,7 +44,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex items-center justify-between gap-3 w-full">
-      <div className="bg-white/60 backdrop-blur-xl rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 flex items-center gap-3 sm:gap-6">
+      <div className="bg-white/50 backdrop-blur-2xl backdrop-saturate-150 border border-white/25 rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 flex items-center gap-3 sm:gap-6">
         <Link to="/" className="flex items-center">
           <Logo />
         </Link>
@@ -75,7 +62,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="hidden sm:flex bg-white/60 backdrop-blur-xl rounded-2xl shadow-sm px-2 sm:px-3 py-2 items-center gap-2 sm:gap-3">
+      <div className="hidden sm:flex bg-white/50 backdrop-blur-2xl backdrop-saturate-150 border border-white/25 rounded-2xl shadow-sm px-2 sm:px-3 py-2 items-center gap-2 sm:gap-3">
         <div ref={domainsRef} className="relative">
           <button
             type="button"
@@ -106,7 +93,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          onClick={openForm}
+          {...TALLY_ATTRS}
           className="bg-black text-white text-sm font-medium px-4 sm:px-5 py-2 rounded-xl hover:bg-gray-800 transition-colors"
         >
           Start a project
@@ -159,10 +146,8 @@ export default function Navbar() {
 
             <button
               type="button"
-              onClick={() => {
-                setMobileOpen(false)
-                openForm()
-              }}
+              {...TALLY_ATTRS}
+              onClick={() => setMobileOpen(false)}
               className="w-full bg-black text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-gray-800 transition-colors"
             >
               Start a project

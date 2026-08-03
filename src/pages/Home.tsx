@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import AboutSection from '../components/AboutSection'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
+import UnderConstructionBanner from '../components/UnderConstructionBanner'
 
 const VIDEO_URL = '/hero_video.mp4'
 
@@ -21,13 +22,17 @@ export default function Home() {
           playsInline
         />
 
+        <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 z-20">
+          <UnderConstructionBanner />
+        </div>
+
         <div className="relative z-10 flex flex-col h-full p-4 sm:p-6 md:p-8 gap-6">
           <Navbar />
 
           <div className="flex-1 min-h-[2rem]" />
 
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 pb-2 sm:pb-3">
-            <div className="shrink-0 bg-white/60 backdrop-blur-xl rounded-2xl shadow-sm p-4 sm:p-6 flex flex-col gap-4">
+            <div className="shrink-0 bg-white/50 backdrop-blur-2xl backdrop-saturate-150 border border-white/25 rounded-2xl shadow-sm p-4 sm:p-6 flex flex-col gap-4">
               <h1 className="text-black text-3xl sm:text-4xl xl:text-5xl font-medium leading-tight lg:max-w-lg xl:max-w-2xl">
                 Turning Human Input Into{' '}
                 <span
@@ -56,7 +61,9 @@ export default function Home() {
         </div>
       </div>
 
-      <AboutSection />
+      <div className="hidden">
+        <AboutSection />
+      </div>
       <CTASection />
       <Footer />
     </div>

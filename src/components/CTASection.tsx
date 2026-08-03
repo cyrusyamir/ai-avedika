@@ -1,7 +1,6 @@
-import { useForm } from '../context/FormContext'
+import { TALLY_ATTRS } from '../lib/tally'
 
 export default function CTASection() {
-  const { openForm } = useForm()
   return (
     <section id="cta" className="p-3 sm:p-4 md:p-6 pt-10 sm:pt-14 pb-8 sm:pb-10">
       <div className="rounded-2xl sm:rounded-3xl bg-black text-white p-8 sm:p-12 md:p-16 shadow-xl flex flex-col items-center text-center gap-5">
@@ -14,7 +13,7 @@ export default function CTASection() {
         </p>
         <button
           type="button"
-          onClick={openForm}
+          {...TALLY_ATTRS}
           className="bg-white text-black text-sm font-semibold px-5 py-2.5 rounded-xl border border-transparent hover:bg-gray-200 active:bg-transparent active:text-white active:border-white transition-colors"
         >
           Start a project
