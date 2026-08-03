@@ -2,7 +2,7 @@
 title: Product Designer
 summary: Help us turn bold ideas into products people love, from first sketch to final pixel.
 order: 2
-link: mailto:hello@forma.co?subject=Product Designer application
+link: mailto:info.ai@avedika.com?subject=Product Designer application
 ---
 
 - Lead end-to-end design on client projects
