@@ -16,11 +16,12 @@ export default function CapabilitiesGrid() {
   return (
     <section
       id="capabilities"
-      className="relative bg-neo-cream bg-grid-lines p-3 sm:p-4 md:p-6 py-16 sm:py-24 scroll-mt-6 overflow-hidden"
+      className="relative bg-black p-3 sm:p-4 md:p-6 py-16 sm:py-24 scroll-mt-6 overflow-hidden"
     >
+      <div className="absolute inset-0 pointer-events-none bg-halftone opacity-10" />
       <span
         aria-hidden
-        className="absolute bottom-6 left-2 lg:left-6 text-[7rem] lg:text-[11rem] font-black uppercase text-stroke leading-none opacity-40 select-none pointer-events-none"
+        className="absolute bottom-6 left-2 lg:left-6 text-[7rem] lg:text-[11rem] font-black uppercase text-stroke-white leading-none opacity-40 select-none pointer-events-none"
       >
         What we do
       </span>
@@ -28,10 +29,10 @@ export default function CapabilitiesGrid() {
         <span className="inline-block w-fit bg-neo-secondary border-4 border-black rounded-full px-4 py-1 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-1">
           What we do
         </span>
-        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tighter text-black leading-[0.95] max-w-3xl">
-          From Data Collection <span className="inline-block bg-black text-neo-secondary border-4 border-black px-3 py-1 rotate-[1deg] shadow-neo-sm">to delivery</span>
+        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-3xl">
+          From Data Collection <span className="inline-block bg-neo-secondary text-black border-4 border-black px-3 py-1 rotate-[1deg] shadow-neo-sm">to delivery</span>
         </h2>
-        <p className="mt-4 text-base sm:text-lg font-bold text-black/70 leading-relaxed max-w-2xl">
+        <p className="mt-4 text-base sm:text-lg font-bold text-white/80 leading-relaxed max-w-2xl">
           Whether you need thousands of data points collected, AI training data prepared, surveys
           completed, or business workflows automated — we provide the people, processes, and
           technology to get it done.
