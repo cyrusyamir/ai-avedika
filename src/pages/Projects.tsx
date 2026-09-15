@@ -35,7 +35,7 @@ export default function Projects() {
         badge="Projects"
         badgeClass="bg-neo-accent"
         bandClass="bg-black"
-        texture="grid"
+        texture="halftone-white"
         starClass="text-white"
       >
         <h1 className="max-w-5xl text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.9]">

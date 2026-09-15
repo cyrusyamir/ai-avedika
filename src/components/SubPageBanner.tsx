@@ -5,7 +5,7 @@ interface SubPageBannerProps {
   badge: string
   badgeClass?: string
   bandClass?: string
-  texture?: 'halftone' | 'grid'
+  texture?: 'halftone' | 'halftone-white' | 'grid'
   starClass?: string
   children: ReactNode
 }
@@ -22,7 +22,7 @@ export default function SubPageBanner({
     <section className={`relative ${bandClass} border-b-4 border-black overflow-hidden`}>
       <div
         className={`absolute inset-0 pointer-events-none ${
-          texture === 'grid' ? 'bg-grid-lines opacity-[0.3]' : 'bg-halftone opacity-10'
+          texture === 'grid' ? 'bg-grid-lines opacity-[0.3]' : texture === 'halftone-white' ? 'bg-halftone-white opacity-10' : 'bg-halftone opacity-10'
         }`}
       />
       <span
