@@ -30,37 +30,20 @@ export default function ServiceSection({ id, badge, title, subtitle, items, acce
   )
 
   const listCard = (
-    <div className="bg-white border-4 border-black p-5 sm:p-6 shadow-neo-sm flex-1 min-w-0">
-      {/* Mobile: vertical stack */}
-      <div className="grid grid-cols-1 sm:hidden gap-4">
-        {items.map((item, i) => (
-          <div
-            key={item.title}
-            className="border-4 border-black bg-neo-cream p-5 flex flex-col gap-2 shadow-neo-sm transition-all duration-200 ease-out"
-            style={{ transitionDelay: `${i * 40}ms` }}
-          >
-            <h3 className="text-base font-black uppercase tracking-tight text-black">
-              {item.title}
-            </h3>
-            <p className="text-sm font-bold text-black/70 leading-relaxed">{item.description}</p>
-          </div>
+    <div className="bg-white border-4 border-black p-6 sm:p-8 shadow-neo-sm flex-1 min-w-0">
+      <ul className="flex flex-col gap-x-8 gap-y-5 lg:grid lg:grid-cols-2">
+        {items.map((item) => (
+          <li key={item.title} className="group flex gap-3">
+            <span className="w-3 h-3 bg-black rotate-45 shrink-0 mt-1.5 group-hover:rotate-[135deg] group-hover:bg-neo-accent transition-all duration-300" />
+            <div className="flex flex-col gap-1">
+              <h3 className="font-black uppercase text-[15px] tracking-tight text-black leading-snug">
+                {item.title}
+              </h3>
+              <p className="font-bold text-sm text-black/70 leading-relaxed">{item.description}</p>
+            </div>
+          </li>
         ))}
-      </div>
-      {/* Desktop: horizontal scroll */}
-      <div className="hidden sm:flex overflow-x-auto gap-4 scroll-smooth snap-x snap-mandatory pb-4 -mx-1 px-1">
-        {items.map((item, i) => (
-          <div
-            key={item.title}
-            className="min-w-[280px] shrink-0 snap-start border-4 border-black bg-neo-cream p-5 flex flex-col gap-2 shadow-neo-sm hover:-translate-y-1 hover:shadow-neo-md transition-all duration-200 ease-out"
-            style={{ transitionDelay: `${i * 40}ms` }}
-          >
-            <h3 className="text-base font-black uppercase tracking-tight text-black">
-              {item.title}
-            </h3>
-            <p className="text-sm font-bold text-black/70 leading-relaxed">{item.description}</p>
-          </div>
-        ))}
-      </div>
+      </ul>
     </div>
   )
 
