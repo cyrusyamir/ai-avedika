@@ -54,10 +54,10 @@ export default function Terms() {
         <p>
           Questions about these terms can be sent to{' '}
           <a
-            href="mailto:contact.ai@avedika.com"
+            href="mailto:info@avedika.com"
             className="text-blue-600 font-semibold hover:underline"
           >
-            contact.ai@avedika.com
+            info@avedika.com
           </a>
           .
         </p>

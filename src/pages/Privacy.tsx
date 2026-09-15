@@ -51,10 +51,10 @@ export default function Privacy() {
         <p>
           For privacy enquiries, email{' '}
           <a
-            href="mailto:contact.ai@avedika.com"
+            href="mailto:info@avedika.com"
             className="text-blue-600 font-semibold hover:underline"
           >
-            contact.ai@avedika.com
+            info@avedika.com
           </a>
           .
         </p>

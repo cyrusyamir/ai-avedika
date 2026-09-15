@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import { SITE_NAME, CONTACT_EMAIL, JOBS_EMAIL, SITE_TAGLINE } from '../lib/site'
+import { SITE_NAME, CONTACT_EMAIL, SITE_TAGLINE } from '../lib/site'
 
 export default function Footer() {
   return (
@@ -21,10 +21,6 @@ export default function Footer() {
             className="text-blue-600 font-semibold hover:underline"
           >
             {CONTACT_EMAIL}
-          </a>
-          <span className="text-xs uppercase tracking-wider text-gray-400 mt-1">For jobs</span>
-          <a href={`mailto:${JOBS_EMAIL}`} className="text-blue-600 font-semibold hover:underline">
-            {JOBS_EMAIL}
           </a>
         </div>
 

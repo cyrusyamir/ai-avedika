@@ -1,15 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import AboutSection from '../components/AboutSection'
-import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
+import CapabilitiesGrid from '../components/CapabilitiesGrid'
+import ServiceSection from '../components/ServiceSection'
+import ProcessSteps from '../components/ProcessSteps'
+import ValueProps from '../components/ValueProps'
+import CTASection from '../components/CTASection'
 import UnderConstructionBanner from '../components/UnderConstructionBanner'
+import { SERVICES } from '../lib/services'
 
 const VIDEO_URL = '/hero_video.mp4'
 
 export default function Home() {
   const navigate = useNavigate()
-
   return (
     <div className="min-h-screen bg-white">
       <div className="h-screen w-full relative">
@@ -61,9 +64,21 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden">
-        <AboutSection />
-      </div>
+      <CapabilitiesGrid />
+
+      {SERVICES.map((section) => (
+        <ServiceSection
+          key={section.id}
+          id={section.id}
+          badge={section.badge}
+          title={section.title}
+          subtitle={section.subtitle}
+          items={section.items}
+        />
+      ))}
+
+      <ProcessSteps />
+      <ValueProps />
       <CTASection />
       <Footer />
     </div>
