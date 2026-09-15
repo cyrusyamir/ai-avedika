@@ -55,7 +55,7 @@ export default function Terms() {
           Questions about these terms can be sent to{' '}
           <a
             href="mailto:info@avedika.com"
-            className="text-blue-600 font-semibold hover:underline"
+            className="bg-neo-accent text-black font-black uppercase text-xs tracking-wide px-3 py-1 border-4 border-black italic hover:bg-[#ff5252] transition-colors duration-100"
           >
             info@avedika.com
           </a>

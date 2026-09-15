@@ -6,13 +6,13 @@ export default function Jobs() {
   return (
     <SubPageLayout>
       <PageCard>
-        <span className="inline-block w-fit bg-black text-white text-[11px] font-medium uppercase tracking-wider px-3 py-1 rounded-full">
+        <span className="inline-block w-fit bg-neo-muted border-4 border-black rounded-full px-4 py-1 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-[-1deg]">
           Open roles
         </span>
-        <h1 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-black">
+        <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-black leading-[0.95]">
           Active jobs
         </h1>
-        <p className="mt-3 text-gray-600 max-w-2xl">
+        <p className="mt-4 text-sm sm:text-base font-bold text-black/70 leading-relaxed max-w-2xl">
           We're always looking for curious people to join the work. Here's where we need help right
           now.
         </p>

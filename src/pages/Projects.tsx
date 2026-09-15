@@ -10,27 +10,27 @@ export default function Projects() {
   return (
     <SubPageLayout>
       <PageCard>
-        <span className="inline-block w-fit bg-black text-white text-[11px] font-medium uppercase tracking-wider px-3 py-1 rounded-full">
+        <span className="inline-block w-fit bg-neo-accent border-4 border-black rounded-full px-4 py-1 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-[-1deg]">
           Projects
         </span>
-        <h1 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-black">
+        <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-black leading-[0.95]">
           Explore work by domain
         </h1>
-        <p className="mt-3 text-gray-600 max-w-2xl">
+        <p className="mt-4 text-sm sm:text-base font-bold text-black/70 leading-relaxed max-w-2xl">
           Select a domain to see the projects and deliverables we run end-to-end.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-wrap gap-3">
           {DOMAINS.map((d) => {
             const active = d === domain
             return (
               <Link
                 key={d}
                 to={`/projects/${DOMAIN_SLUGS[d]}`}
-                className={`text-xs font-medium px-4 py-2 rounded-xl border transition-colors ${
+                className={`font-black uppercase text-xs tracking-wide px-4 py-2 border-4 border-black shadow-neo-sm active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100 ${
                   active
-                    ? 'bg-black text-white border-black'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-black'
+                    ? 'bg-black text-neo-secondary'
+                    : 'bg-white text-black hover:bg-neo-secondary'
                 }`}
               >
                 {d}
@@ -43,14 +43,14 @@ export default function Projects() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="bg-white text-black rounded-2xl sm:rounded-3xl border border-gray-200 p-5 sm:p-6 flex flex-col gap-4 shadow-sm hover:shadow-lg transition-shadow"
+              className="bg-white text-black border-4 border-black p-5 sm:p-6 flex flex-col gap-4 shadow-neo-sm hover:-translate-y-1 hover:shadow-neo-md transition-all duration-200 ease-out"
             >
-              <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>
-              <p className="text-sm text-gray-500">{project.summary}</p>
+              <h3 className="text-lg font-black uppercase tracking-tight">{project.title}</h3>
+              <p className="text-sm font-bold text-black/70 leading-relaxed">{project.summary}</p>
               <ul className="flex flex-col gap-2.5">
                 {project.details.map((detail, d) => (
-                  <li key={d} className="flex gap-2.5 text-sm text-gray-700">
-                    <span className="text-black mt-0.5">•</span>
+                  <li key={d} className="group flex gap-3 text-sm font-bold text-black/70 leading-relaxed">
+                    <span className="w-2.5 h-2.5 bg-black rotate-45 shrink-0 mt-1 group-hover:rotate-[135deg] group-hover:bg-neo-accent transition-all duration-300" />
                     <span>{detail}</span>
                   </li>
                 ))}
@@ -59,7 +59,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-medium px-3 py-1 rounded-full bg-black text-white"
+                    className="text-xs font-black uppercase tracking-wide px-3 py-1 border-4 border-black bg-neo-cream text-black"
                   >
                     {tag}
                   </span>
