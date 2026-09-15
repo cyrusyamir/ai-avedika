@@ -12,7 +12,7 @@ const PAGE_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t-4 border-black bg-neo-secondary">
+    <footer className="border-t-4 border-black bg-neo-cream bg-grid-lines">
       <div className="p-6 sm:p-10 flex flex-col sm:flex-row sm:items-start flex-wrap items-center justify-between gap-8 sm:gap-10">
         {/* Column 1: Brand */}
         <div className="flex flex-col items-center sm:items-start gap-3">
@@ -31,7 +31,7 @@ export default function Footer() {
               <Link
                 key={link.target}
                 to={link.target}
-                className="font-bold uppercase text-sm hover:bg-black hover:text-neo-secondary px-2 py-1 transition-colors duration-100"
+                className="font-bold uppercase text-sm hover:bg-neo-accent hover:text-black px-2 py-1 transition-colors duration-100"
               >
                 {link.label}
               </Link>
