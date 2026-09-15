@@ -29,8 +29,14 @@ export default function CapabilitiesGrid() {
         <span className="inline-block w-fit bg-neo-secondary border-4 border-black rounded-full px-4 py-1 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-1">
           What we do
         </span>
-        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-3xl">
-          From Data Collection <span className="inline-block bg-neo-secondary text-black border-4 border-black px-3 py-1 rotate-[1deg] shadow-neo-sm">to delivery</span>
+        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.9] max-w-3xl">
+          <span className="block">From</span>
+          <span className="block">Data Collection</span>
+          <span className="block mt-2">
+            <span className="inline-block bg-neo-secondary text-black border-4 border-black px-4 sm:px-6 py-1 rotate-[1deg] shadow-neo-sm">
+              To Delivery
+            </span>
+          </span>
         </h2>
         <p className="mt-4 text-base sm:text-lg font-bold text-white/80 leading-relaxed max-w-2xl">
           Whether you need thousands of data points collected, AI training data prepared, surveys

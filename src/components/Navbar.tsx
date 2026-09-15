@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import Logo from './Logo'
 import { TALLY_ATTRS } from '../lib/tally'
-import { DOMAINS, DOMAIN_SLUGS, type Domain } from '../lib/projects'
+import { PROJECT_CATEGORIES } from '../lib/projects'
 
 const NAV_ITEMS: { label: string; target: string }[] = [
   { label: 'Our story', target: '/about' },
@@ -13,15 +13,15 @@ const NAV_ITEMS: { label: string; target: string }[] = [
 
 export default function Navbar() {
   const navigate = useNavigate()
-  const [domainsOpen, setDomainsOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const domainsRef = useRef<HTMLDivElement>(null)
+  const servicesRef = useRef<HTMLDivElement>(null)
   const mobileRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (domainsRef.current && !domainsRef.current.contains(e.target as Node)) {
-        setDomainsOpen(false)
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setServicesOpen(false)
       }
       if (mobileRef.current && !mobileRef.current.contains(e.target as Node)) {
         setMobileOpen(false)
@@ -36,10 +36,10 @@ export default function Navbar() {
     navigate(item.target)
   }
 
-  const selectDomain = (domain: Domain) => {
-    setDomainsOpen(false)
+  const selectCategory = (category: (typeof PROJECT_CATEGORIES)[number]) => {
+    setServicesOpen(false)
     setMobileOpen(false)
-    navigate(`/projects/${DOMAIN_SLUGS[domain]}`)
+    navigate(`/projects#${category.slug}`)
   }
 
   return (
@@ -68,28 +68,29 @@ export default function Navbar() {
 
         {/* Right: Domains + CTA */}
         <div className="flex items-center gap-2 shrink-0">
-          <div ref={domainsRef} className="relative">
+          <div ref={servicesRef} className="relative">
             <button
               type="button"
-              onClick={() => setDomainsOpen((open) => !open)}
+              onClick={() => setServicesOpen((open) => !open)}
               className="flex items-center gap-1 bg-white text-black font-bold uppercase text-sm px-4 py-2 border-4 border-black shadow-neo-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap active:translate-x-1 active:translate-y-1 active:shadow-none"
             >
-              Domains
+              Services
               <ChevronDown
                 size={14}
-                className={`transition-transform duration-100 ${domainsOpen ? 'rotate-180' : ''}`}
+                className={`transition-transform duration-100 ${servicesOpen ? 'rotate-180' : ''}`}
               />
             </button>
-            {domainsOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white border-4 border-black shadow-neo-md p-1.5 z-50">
-                {DOMAINS.map((domain) => (
+            {servicesOpen && (
+              <div className="absolute right-0 mt-2 w-64 bg-white border-4 border-black shadow-neo-md p-1.5 z-50">
+                {PROJECT_CATEGORIES.map((category, i) => (
                   <button
-                    key={domain}
+                    key={category.slug}
                     type="button"
-                    onClick={() => selectDomain(domain)}
-                    className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap"
+                    onClick={() => selectCategory(category)}
+                    className="flex w-full items-center gap-3 text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap"
                   >
-                    {domain}
+                    <span className="font-black text-xs text-black/40">{String(i + 1).padStart(2, '0')}</span>
+                    {category.label}
                   </button>
                 ))}
               </div>
@@ -140,15 +141,15 @@ export default function Navbar() {
 
             <div className="h-1 bg-black my-2" />
 
-            <p className="px-3 py-1 text-xs font-bold uppercase tracking-widest text-black/50">Domains</p>
-            {DOMAINS.map((domain) => (
+            <p className="px-3 py-1 text-xs font-bold uppercase tracking-widest text-black/50">Services</p>
+            {PROJECT_CATEGORIES.map((category) => (
               <button
-                key={domain}
+                key={category.slug}
                 type="button"
-                onClick={() => selectDomain(domain)}
+                onClick={() => selectCategory(category)}
                 className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100"
               >
-                {domain}
+                {category.label}
               </button>
             ))}
 
