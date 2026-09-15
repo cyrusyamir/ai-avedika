@@ -15,8 +15,8 @@ export default function HeroSection() {
           <Navbar />
         </div>
 
-        {/* hero content */}
-        <div className="flex-1 flex flex-col justify-center py-12 sm:py-16 gap-8 max-w-6xl">
+        {/* hero content — centered */}
+        <div className="flex-1 flex flex-col items-center justify-center py-12 sm:py-16 gap-8 max-w-4xl mx-auto text-center">
           {/* sticker badge */}
           <span className="inline-block w-fit bg-neo-accent border-4 border-black rounded-full px-4 py-1.5 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-[-2deg]">
             AI Data &middot; Research &middot; Workforce &middot; Technology

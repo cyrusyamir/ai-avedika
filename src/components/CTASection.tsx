@@ -6,7 +6,7 @@ export default function CTASection() {
       <div className="relative bg-black text-white border-4 border-black shadow-neo-xl p-8 sm:p-12 md:p-16 flex flex-col items-center text-center gap-6 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle,#fff_2px,transparent_2.5px)] bg-[length:30px_30px] opacity-15" />
         <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-[0.95]">
-          Have a <span className="text-stroke">Project</span> in Mind?
+          Have a <span className="text-stroke-white">Project</span> in Mind?
         </h2>
         <p className="relative text-base sm:text-lg font-bold text-white/80 max-w-xl leading-relaxed">
           Tell us what you're trying to build, collect, automate, or scale. We'll help you

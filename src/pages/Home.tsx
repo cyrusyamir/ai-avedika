@@ -27,6 +27,7 @@ export default function Home() {
           subtitle={section.subtitle}
           items={section.items}
           accent={ACCENTS[i % ACCENTS.length]}
+          index={i}
         />
       ))}
 

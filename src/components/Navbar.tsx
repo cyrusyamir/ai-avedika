@@ -43,13 +43,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex items-center justify-between gap-3 w-full">
-      {/* Left: Logo + links */}
-      <div className="bg-neo-cream border-4 border-black shadow-neo-sm pl-3 sm:pl-4 pr-2 py-2 flex items-center gap-3 sm:gap-6">
-        <Link to="/" className="flex items-center">
+    <>
+      {/* Desktop: single bar */}
+      <nav className="hidden sm:flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-4 py-2 w-full">
+        {/* Left: Logo + brand */}
+        <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
+          <span className="font-black uppercase text-sm tracking-tight">Avedika</span>
         </Link>
-        <div className="hidden sm:flex items-center gap-1">
+
+        {/* Center: links */}
+        <div className="flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
@@ -61,49 +65,54 @@ export default function Navbar() {
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Right: Domains + CTA */}
-      <div className="hidden sm:flex bg-neo-cream border-4 border-black shadow-neo-sm px-2 py-2 items-center gap-2">
-        <div ref={domainsRef} className="relative">
+        {/* Right: Domains + CTA */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div ref={domainsRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setDomainsOpen((open) => !open)}
+              className="flex items-center gap-1 bg-white text-black font-bold uppercase text-sm px-4 py-2 border-4 border-black shadow-neo-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap active:translate-x-1 active:translate-y-1 active:shadow-none"
+            >
+              Domains
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-100 ${domainsOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+            {domainsOpen && (
+              <div className="absolute right-0 mt-2 w-56 bg-white border-4 border-black shadow-neo-md p-1.5 z-50">
+                {DOMAINS.map((domain) => (
+                  <button
+                    key={domain}
+                    type="button"
+                    onClick={() => selectDomain(domain)}
+                    className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap"
+                  >
+                    {domain}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           <button
             type="button"
-            onClick={() => setDomainsOpen((open) => !open)}
-            className="flex items-center gap-1 bg-white text-black font-bold uppercase text-sm px-3 sm:px-4 py-2 border-4 border-black shadow-neo-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap active:translate-x-1 active:translate-y-1 active:shadow-none"
+            {...TALLY_ATTRS}
+            className="bg-neo-accent text-black font-bold uppercase text-sm px-5 py-2 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
           >
-            Domains
-            <ChevronDown
-              size={14}
-              className={`transition-transform duration-100 ${domainsOpen ? 'rotate-180' : ''}`}
-            />
+            Start a project
           </button>
-          {domainsOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-white border-4 border-black shadow-neo-md p-1.5 z-50">
-              {DOMAINS.map((domain) => (
-                <button
-                  key={domain}
-                  type="button"
-                  onClick={() => selectDomain(domain)}
-                  className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap"
-                >
-                  {domain}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
+      </nav>
 
-        <button
-          type="button"
-          {...TALLY_ATTRS}
-          className="bg-neo-accent text-black font-bold uppercase text-sm px-4 sm:px-5 py-2 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
-        >
-          Start a project
-        </button>
-      </div>
+      {/* Mobile: hamburger + dropdown */}
+      <div ref={mobileRef} className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
+          <Logo />
+          <span className="font-black uppercase text-sm tracking-tight">Avedika</span>
+        </Link>
 
-      {/* Mobile hamburger + menu */}
-      <div ref={mobileRef} className="sm:hidden relative">
         <button
           type="button"
           aria-label="Menu"
@@ -156,6 +165,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </nav>
+    </>
   )
 }
