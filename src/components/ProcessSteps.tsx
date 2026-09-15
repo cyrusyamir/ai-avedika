@@ -13,6 +13,12 @@ export default function ProcessSteps() {
       className="relative bg-black border-t-4 border-black p-3 sm:p-4 md:p-6 py-16 sm:py-24 scroll-mt-6 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none bg-halftone opacity-10" />
+      <span
+        aria-hidden
+        className="absolute top-8 right-4 lg:right-10 text-[7rem] lg:text-[11rem] font-black uppercase text-stroke-white leading-none opacity-40 select-none pointer-events-none"
+      >
+        Process
+      </span>
       <Star
         aria-hidden
         size={40}

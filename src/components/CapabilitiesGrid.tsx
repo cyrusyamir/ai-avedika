@@ -21,7 +21,7 @@ export default function CapabilitiesGrid() {
       <div className="absolute inset-0 pointer-events-none bg-halftone opacity-10" />
       <span
         aria-hidden
-        className="absolute bottom-6 left-2 lg:left-6 text-[7rem] lg:text-[11rem] font-black uppercase text-stroke-white leading-none opacity-40 select-none pointer-events-none"
+        className="absolute top-8 right-4 lg:right-10 text-[7rem] lg:text-[11rem] font-black uppercase text-stroke-white leading-none opacity-40 select-none pointer-events-none"
       >
         What we do
       </span>
@@ -42,7 +42,7 @@ export default function CapabilitiesGrid() {
           {CAPABILITIES.map((cap, i) => (
             <div
               key={cap.title}
-              className={`${TILE_STYLES[i % TILE_STYLES.length]} ${ROTATIONS[i % ROTATIONS.length]} border-4 border-black p-5 sm:p-6 flex flex-col gap-3 shadow-neo-sm hover:-translate-y-1 hover:rotate-0 hover:shadow-neo-md transition-all duration-200 ease-out ${
+              className={`${TILE_STYLES[i % TILE_STYLES.length]} ${ROTATIONS[i % ROTATIONS.length]} border-4 border-black p-5 sm:p-6 flex flex-col gap-3 shadow-neo-sm hover:-translate-y-1 hover:rotate-0 hover:shadow-[12px_12px_0px_0px_#FFD93D] transition-all duration-200 ease-out ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: `${i * 60}ms` }}
