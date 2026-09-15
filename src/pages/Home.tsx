@@ -8,6 +8,8 @@ import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
 import { SERVICES } from '../lib/services'
 
+const ACCENTS = ['bg-neo-accent', 'bg-neo-secondary', 'bg-neo-muted']
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-neo-cream">
@@ -16,7 +18,7 @@ export default function Home() {
 
       <CapabilitiesGrid />
 
-      {SERVICES.map((section) => (
+      {SERVICES.map((section, i) => (
         <ServiceSection
           key={section.id}
           id={section.id}
@@ -24,6 +26,7 @@ export default function Home() {
           title={section.title}
           subtitle={section.subtitle}
           items={section.items}
+          accent={ACCENTS[i % ACCENTS.length]}
         />
       ))}
 
