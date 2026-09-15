@@ -44,17 +44,18 @@ export default function Navbar() {
 
   return (
     <nav className="flex items-center justify-between gap-3 w-full">
-      <div className="bg-white/50 backdrop-blur-2xl backdrop-saturate-150 border border-white/25 rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 flex items-center gap-3 sm:gap-6">
+      {/* Left: Logo + links */}
+      <div className="bg-neo-cream border-4 border-black shadow-neo-sm pl-3 sm:pl-4 pr-2 py-2 flex items-center gap-3 sm:gap-6">
         <Link to="/" className="flex items-center">
           <Logo />
         </Link>
-        <div className="hidden sm:flex items-center gap-6">
+        <div className="hidden sm:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
               type="button"
               onClick={() => onNavItem(item)}
-              className="text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap"
+              className="font-bold uppercase text-sm tracking-wide px-3 py-1.5 border-2 border-transparent hover:border-black hover:bg-neo-accent hover:shadow-neo-sm transition-all duration-100 whitespace-nowrap"
             >
               {item.label}
             </button>
@@ -62,27 +63,28 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="hidden sm:flex bg-white/50 backdrop-blur-2xl backdrop-saturate-150 border border-white/25 rounded-2xl shadow-sm px-2 sm:px-3 py-2 items-center gap-2 sm:gap-3">
+      {/* Right: Domains + CTA */}
+      <div className="hidden sm:flex bg-neo-cream border-4 border-black shadow-neo-sm px-2 py-2 items-center gap-2">
         <div ref={domainsRef} className="relative">
           <button
             type="button"
             onClick={() => setDomainsOpen((open) => !open)}
-            className="flex items-center gap-1 bg-white text-gray-900 text-sm font-medium px-3 sm:px-4 py-2 rounded-xl border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors whitespace-nowrap"
+            className="flex items-center gap-1 bg-white text-black font-bold uppercase text-sm px-3 sm:px-4 py-2 border-4 border-black shadow-neo-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap active:translate-x-1 active:translate-y-1 active:shadow-none"
           >
             Domains
             <ChevronDown
               size={14}
-              className={`transition-transform ${domainsOpen ? 'rotate-180' : ''}`}
+              className={`transition-transform duration-100 ${domainsOpen ? 'rotate-180' : ''}`}
             />
           </button>
           {domainsOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 p-1.5 z-50">
+            <div className="absolute right-0 mt-2 w-56 bg-white border-4 border-black shadow-neo-md p-1.5 z-50">
               {DOMAINS.map((domain) => (
                 <button
                   key={domain}
                   type="button"
                   onClick={() => selectDomain(domain)}
-                  className="block w-full text-left px-3 py-2 rounded-lg text-sm text-gray-800 hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100 whitespace-nowrap"
                 >
                   {domain}
                 </button>
@@ -94,61 +96,60 @@ export default function Navbar() {
         <button
           type="button"
           {...TALLY_ATTRS}
-          className="bg-black text-white text-sm font-medium px-4 sm:px-5 py-2 rounded-xl hover:bg-gray-800 transition-colors"
+          className="bg-neo-accent text-black font-bold uppercase text-sm px-4 sm:px-5 py-2 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
         >
           Start a project
         </button>
       </div>
 
+      {/* Mobile hamburger + menu */}
       <div ref={mobileRef} className="sm:hidden relative">
         <button
           type="button"
           aria-label="Menu"
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
-          className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-            mobileOpen
-              ? 'bg-[#FDFCF9] text-black border border-gray-900'
-              : 'bg-black text-white border border-black'
+          className={`w-11 h-11 flex items-center justify-center border-4 border-black shadow-neo-sm transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none ${
+            mobileOpen ? 'bg-neo-accent text-white' : 'bg-neo-cream text-black'
           }`}
         >
           {mobileOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
 
         {mobileOpen && (
-          <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50">
+          <div className="absolute right-0 top-full mt-2 w-64 bg-white border-4 border-black shadow-neo-lg p-2 z-50">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.label}
                 type="button"
                 onClick={() => onNavItem(item)}
-                className="block w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-800 hover:bg-gray-100 transition-colors"
+                className="block w-full text-left px-3 py-2.5 font-bold uppercase text-sm hover:bg-neo-secondary transition-colors duration-100"
               >
                 {item.label}
               </button>
             ))}
 
-            <div className="h-px bg-gray-200 my-2" />
+            <div className="h-1 bg-black my-2" />
 
-            <p className="px-3 py-1 text-xs uppercase tracking-wider text-gray-400">Domains</p>
+            <p className="px-3 py-1 text-xs font-bold uppercase tracking-widest text-black/50">Domains</p>
             {DOMAINS.map((domain) => (
               <button
                 key={domain}
                 type="button"
                 onClick={() => selectDomain(domain)}
-                className="block w-full text-left px-3 py-2 rounded-lg text-sm text-gray-800 hover:bg-gray-100 transition-colors"
+                className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100"
               >
                 {domain}
               </button>
             ))}
 
-            <div className="h-px bg-gray-200 my-2" />
+            <div className="h-1 bg-black my-2" />
 
             <button
               type="button"
               {...TALLY_ATTRS}
               onClick={() => setMobileOpen(false)}
-              className="w-full bg-black text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-gray-800 transition-colors"
+              className="w-full bg-neo-accent text-black font-bold uppercase text-sm px-4 py-2.5 border-4 border-black shadow-neo-sm active:translate-x-1 active:translate-y-1 active:shadow-none hover:bg-[#ff5252] transition-all duration-100"
             >
               Start a project
             </button>
