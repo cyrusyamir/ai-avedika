@@ -16,7 +16,7 @@ export default function SubPageCta({
 }: SubPageCtaProps) {
   return (
     <section className={`relative ${bandClass} border-t-4 border-black overflow-hidden`}>
-      <div className="absolute inset-0 pointer-events-none bg-halftone opacity-10" />
+      <div className="absolute inset-0 pointer-events-none bg-halftone opacity-[0.18]" />
       <ArrowUpRight
         aria-hidden
         size={180}

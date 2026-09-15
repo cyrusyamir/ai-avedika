@@ -22,7 +22,7 @@ export default function SubPageBanner({
     <section className={`relative ${bandClass} border-b-4 border-black overflow-hidden`}>
       <div
         className={`absolute inset-0 pointer-events-none ${
-          texture === 'grid' ? 'bg-grid-lines opacity-[0.3]' : texture === 'halftone-white' ? 'bg-halftone-white opacity-10' : 'bg-halftone opacity-10'
+          texture === 'grid' ? 'bg-grid-lines opacity-[0.3]' : texture === 'halftone-white' ? 'bg-halftone-white opacity-[0.18]' : 'bg-halftone opacity-[0.18]'
         }`}
       />
       <span

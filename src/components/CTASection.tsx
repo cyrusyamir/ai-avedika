@@ -7,7 +7,7 @@ export default function CTASection() {
       id="cta"
       className="relative bg-neo-accent border-t-4 border-black p-3 sm:p-4 md:p-6 py-16 sm:py-24 overflow-hidden"
     >
-      <div className="absolute inset-0 pointer-events-none bg-halftone opacity-10" />
+      <div className="absolute inset-0 pointer-events-none bg-halftone opacity-[0.18]" />
       <ArrowRight
         aria-hidden
         size={200}
