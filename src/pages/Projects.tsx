@@ -7,7 +7,7 @@ import { TALLY_ATTRS } from '../lib/tally'
 import { PROJECT_CATEGORIES } from '../lib/projects'
 import { BTN_BLACK } from '../lib/ui'
 
-const BANDS = ['bg-neo-accent', 'bg-neo-secondary', 'bg-neo-muted', 'bg-white', 'bg-black']
+const BANDS = ['bg-neo-accent', 'bg-neo-secondary', 'bg-neo-muted', 'bg-neo-accent', 'bg-black']
 const STRIP_STYLES = ['bg-neo-secondary', 'bg-neo-muted', 'bg-neo-accent']
 
 export default function Projects() {

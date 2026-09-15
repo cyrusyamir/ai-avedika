@@ -21,6 +21,11 @@
     background-size: 30px 30px;
   }
 
+  .bg-halftone-white {
+    background-image: radial-gradient(circle, #fff 2px, transparent 2.5px);
+    background-size: 30px 30px;
+  }
+
   .text-stroke {
     -webkit-text-stroke: 2px #000;
     color: transparent;
