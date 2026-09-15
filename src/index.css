@@ -45,12 +45,28 @@
   animation: spin-slow 10s linear infinite;
 }
 
+@keyframes neo-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-neo-pop {
+  animation: neo-pop 180ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-spin-slow,
   .animate-ping,
   .animate-bounce,
-  .animate-pulse {
+  .animate-pulse,
+  .animate-neo-pop {
     animation: none;
   }
 }
