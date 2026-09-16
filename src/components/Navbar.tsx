@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Left: Logo + brand */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
-          <span className="font-black uppercase text-sm tracking-tight">Avedika</span>
+          <span className="font-black uppercase text-lg tracking-tight">AVEDIKA AI</span>
         </Link>
 
         {/* Center: links */}
@@ -111,7 +111,7 @@ export default function Navbar() {
       <div ref={mobileRef} className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
-          <span className="font-black uppercase text-sm tracking-tight">Avedika</span>
+          <span className="font-black uppercase text-lg tracking-tight">AVEDIKA AI</span>
         </Link>
 
         <button
