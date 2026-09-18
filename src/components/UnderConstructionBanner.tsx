@@ -8,19 +8,19 @@ export default function UnderConstructionBanner() {
 
   return (
     <div className="pt-2 px-3 flex justify-center">
-      <div className="flex items-center gap-2 sm:gap-3 bg-neutral-100 border border-gray-200 rounded-full pl-2.5 sm:pl-4 pr-1.5 sm:pr-2 py-1 text-sm text-gray-800 shadow-sm">
-        <span className="relative flex w-2 h-2 sm:w-2.5 sm:h-2.5 shrink-0">
+      <div className="flex items-center gap-2 sm:gap-3 bg-neo-secondary border-4 border-black rounded-full pl-3 sm:pl-4 pr-1.5 sm:pr-2 py-1.5 font-bold text-sm shadow-neo-sm">
+        <span className="relative flex w-2.5 h-2.5 shrink-0">
           <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-green-500"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
         </span>
         <span className="text-xs sm:text-sm whitespace-nowrap">
-          Full Web site is under construction, 100% operational
+          Full website is under construction, 100% operational
         </span>
         <button
           type="button"
           aria-label="Close"
           onClick={() => setVisible(false)}
-          className="w-6 h-6 sm:w-7 sm:h-7 shrink-0 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-200 transition-colors"
+          className="w-7 h-7 shrink-0 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-neo-accent transition-colors duration-100"
         >
           <X size={13} />
         </button>

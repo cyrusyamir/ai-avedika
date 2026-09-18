@@ -9,10 +9,10 @@ import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (!hash) window.scrollTo(0, 0)
+  }, [pathname, hash])
   return null
 }
 
@@ -26,7 +26,6 @@ export default function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:slug" element={<JobDetail />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:domain" element={<Projects />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<Home />} />

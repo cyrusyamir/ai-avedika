@@ -9,3 +9,6 @@ dist/
 
 .vercel
 .env*
+
+# local design notes
+neobrut design.md
