@@ -9,9 +9,15 @@ link: https://tally.so/r/rjRkv5
 ---
 
 ## Key Responsibilities
----
--
---
+
+
+- Ship polished React + TypeScript interfaces
+- Own features from design to production
+- Work closely with design and product
+
+
+## Requirments
+
 
 - Ship polished React + TypeScript interfaces
 - Own features from design to production
