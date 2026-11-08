@@ -7,7 +7,7 @@ export default function UnderConstructionBanner() {
   if (!visible) return null
 
   return (
-    <div className="pt-2 px-3 flex justify-center">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 sm:pt-8 md:pt-10 pb-4 flex justify-center">
       <div className="flex items-center gap-2 sm:gap-3 bg-neo-secondary border-4 border-black rounded-full pl-3 sm:pl-4 pr-1.5 sm:pr-2 py-1.5 font-bold text-sm shadow-neo-sm">
         <span className="relative flex w-2.5 h-2.5 shrink-0">
           <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>

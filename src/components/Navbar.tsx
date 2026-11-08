@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
+import { ChevronDown, X } from 'lucide-react'
 import Logo from './Logo'
 import { TALLY_ATTRS } from '../lib/tally'
 import { PROJECT_CATEGORIES } from '../lib/projects'
@@ -106,7 +106,7 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop: single bar */}
-      <nav className="hidden sm:flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-4 py-2 w-full">
+      <nav className="hidden sm:flex items-center justify-between bg-neo-cream border-b-4 border-black px-4 sm:px-6 md:px-8 py-2 w-full">
         {/* Left: Logo + brand */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
@@ -169,7 +169,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile: compact bar + full-screen slide-over menu */}
-      <div className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
+      <div className="sm:hidden relative flex items-center justify-between bg-neo-cream border-b-4 border-black px-3 py-2 w-full">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
           <span className="font-black uppercase text-lg tracking-tight">{SITE_NAME_UPPER}</span>
@@ -182,9 +182,32 @@ export default function Navbar() {
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           onClick={openMobile}
-          className="w-11 h-11 flex items-center justify-center border-4 border-black shadow-neo-sm bg-neo-cream text-black transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+          className={`w-11 h-11 flex items-center justify-center border-4 border-black shadow-neo-sm text-black transition-colors duration-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none ${
+            mobileOpen ? 'bg-neo-accent' : 'bg-neo-cream'
+          }`}
         >
-          <Menu size={18} />
+          <span className="relative block h-3.5 w-5 overflow-hidden" aria-hidden>
+            {/* burger — pushes out when opening */}
+            <span
+              className={`absolute inset-0 flex flex-col justify-between transition-all duration-300 ease-out ${
+                mobileOpen ? '-translate-x-7 opacity-0' : 'translate-x-0 opacity-100'
+              }`}
+            >
+              <span className="h-[2px] w-5 rounded-full bg-black" />
+              <span className="h-[2px] w-5 rounded-full bg-black" />
+              <span className="h-[2px] w-5 rounded-full bg-black" />
+            </span>
+
+            {/* X — pushes in when opening */}
+            <span
+              className={`absolute inset-0 transition-all duration-300 ease-out ${
+                mobileOpen ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'
+              }`}
+            >
+              <span className="absolute left-0 top-1/2 h-[2px] w-5 -translate-y-1/2 rotate-45 rounded-full bg-black" />
+              <span className="absolute left-0 top-1/2 h-[2px] w-5 -translate-y-1/2 -rotate-45 rounded-full bg-black" />
+            </span>
+          </span>
         </button>
 
         {mobileMounted && (
@@ -222,7 +245,7 @@ export default function Navbar() {
             </div>
 
             {/* Scrollable panel body */}
-            <div className="flex-1 overflow-y-auto px-3 py-4 flex flex-col gap-4">
+            <div className="flex-1 overflow-y-auto px-3 pt-1 pb-4 flex flex-col gap-4">
               {/* Main menu items */}
               <div className="flex flex-col gap-1">
                 {NAV_ITEMS.map((item) => (
@@ -230,19 +253,18 @@ export default function Navbar() {
                     key={item.label}
                     type="button"
                     onClick={() => onNavItem(item)}
-                    className="flex w-full items-center justify-between gap-3 text-left px-3 py-3 font-black uppercase text-lg tracking-tight border-4 border-black bg-white shadow-neo-sm hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+                    className="w-full text-left px-1 py-2 font-black uppercase text-[18px] tracking-tight hover:text-neo-accent transition-colors duration-100"
                   >
-                    <span>{item.label}</span>
-                    <ArrowRight size={18} aria-hidden />
+                    {item.label}
                   </button>
                 ))}
               </div>
 
-              <div className="border-t-4 border-black" />
+              <div className="border-t-2 border-black/20" />
 
               {/* Services */}
-              <div className="flex flex-col gap-1">
-                <p className="px-1 py-1 text-xs font-black uppercase tracking-widest text-black/50">
+              <div className="flex flex-col">
+                <p className="px-1 py-1 text-[18px] font-black uppercase tracking-wide text-black/60">
                   Services
                 </p>
                 {PROJECT_CATEGORIES.map((category, i) => (
@@ -250,29 +272,27 @@ export default function Navbar() {
                     key={category.slug}
                     type="button"
                     onClick={() => selectCategory(category)}
-                    className="flex w-full items-center gap-3 text-left px-3 py-2.5 font-bold text-sm border-4 border-black bg-white shadow-neo-sm hover:bg-neo-secondary active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+                    className="flex w-full items-center gap-3 text-left px-1 py-2.5 font-black text-[14px] border-b-2 border-black last:border-b-0 hover:text-neo-accent transition-colors duration-100"
                   >
-                    <span className="font-black text-xs text-black/40">
+                    <span className="font-black text-[14px] text-black/40">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span>{category.label}</span>
                   </button>
                 ))}
               </div>
+            </div>
 
-              <div className="border-t-4 border-black" />
-
-              {/* CTA */}
-              <div className="pb-4">
-                <button
-                  type="button"
-                  {...TALLY_ATTRS}
-                  onClick={() => closeMobile(false)}
-                  className="w-full bg-neo-accent text-black font-black uppercase text-base tracking-wide px-4 py-3 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
-                >
-                  Start a project
-                </button>
-              </div>
+            {/* Pinned CTA */}
+            <div className="shrink-0 border-t-2 border-black bg-neo-cream px-3 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+              <button
+                type="button"
+                {...TALLY_ATTRS}
+                onClick={() => closeMobile(false)}
+                className="w-full bg-neo-accent text-black font-black uppercase text-[18px] tracking-wide px-4 py-3 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+              >
+                Start a project
+              </button>
             </div>
           </div>
         )}

@@ -1,4 +1,5 @@
 import { TALLY_ATTRS } from '../lib/tally'
+import { SHOW_CONSTRUCTION_BANNER } from '../lib/site'
 import UnderConstructionBanner from './UnderConstructionBanner'
 import Navbar from './Navbar'
 
@@ -8,15 +9,15 @@ export default function HeroSection() {
       {/* decorative floating shape */}
       <div className="absolute top-20 right-8 sm:right-16 w-16 h-16 sm:w-24 sm:h-24 bg-neo-secondary border-4 border-black rotate-12 opacity-60 hidden lg:block" />
 
-      <div className="relative z-10 flex flex-col h-full p-4 sm:p-6 md:p-8 min-h-screen">
-        {/* top bar: banner + navbar */}
-        <div className="flex flex-col gap-4">
-          <UnderConstructionBanner />
-          <Navbar />
-        </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* top banner */}
+        {SHOW_CONSTRUCTION_BANNER && <UnderConstructionBanner />}
+
+        {/* navbar — full width on all breakpoints */}
+        <Navbar />
 
         {/* hero content — centered */}
-        <div className="flex-1 flex flex-col items-center justify-center py-12 sm:py-16 gap-8 max-w-4xl mx-auto text-center">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 gap-8 max-w-4xl mx-auto text-center">
           {/* sticker badge */}
           <span className="inline-block w-fit bg-neo-accent border-4 border-black rounded-full px-4 py-1.5 font-black uppercase text-xs tracking-widest shadow-neo-sm rotate-[-2deg]">
             AI Data &middot; Research &middot; Workforce &middot; Technology

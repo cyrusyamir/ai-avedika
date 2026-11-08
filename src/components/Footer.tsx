@@ -13,7 +13,7 @@ import {
 } from '../lib/site'
 
 const CONTACT_LINK =
-  'inline-flex w-fit items-center gap-2 bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100'
+  'inline-flex w-40 items-center gap-2 bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100'
 
 const PAGE_LINKS = [
   { label: 'Our story', target: '/about' },
