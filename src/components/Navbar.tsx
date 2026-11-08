@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ChevronDown, Menu, X } from 'lucide-react'
+import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
 import Logo from './Logo'
 import { TALLY_ATTRS } from '../lib/tally'
 import { PROJECT_CATEGORIES } from '../lib/projects'
@@ -12,36 +12,96 @@ const NAV_ITEMS: { label: string; target: string }[] = [
   { label: 'Apply for work', target: '/jobs' },
 ]
 
+const MENU_TRANSITION_MS = 300
+
 export default function Navbar() {
   const navigate = useNavigate()
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileMounted, setMobileMounted] = useState(false)
   const servicesRef = useRef<HTMLDivElement>(null)
-  const mobileRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const closeTimer = useRef<number | null>(null)
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }, [])
+
+  const openMobile = useCallback(() => {
+    clearCloseTimer()
+    setMobileMounted(true)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setMobileOpen(true))
+    })
+  }, [clearCloseTimer])
+
+  const closeMobile = useCallback(
+    (restoreFocus = true) => {
+      setMobileOpen(false)
+      clearCloseTimer()
+      closeTimer.current = window.setTimeout(() => {
+        setMobileMounted(false)
+        closeTimer.current = null
+        if (restoreFocus) menuButtonRef.current?.focus()
+      }, MENU_TRANSITION_MS)
+    },
+    [clearCloseTimer],
+  )
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
         setServicesOpen(false)
       }
-      if (mobileRef.current && !mobileRef.current.contains(e.target as Node)) {
-        setMobileOpen(false)
-      }
     }
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  const onNavItem = (item: (typeof NAV_ITEMS)[number]) => {
-    setMobileOpen(false)
-    navigate(item.target)
-  }
+  // Lock body scroll while the mobile panel is mounted
+  useEffect(() => {
+    if (!mobileMounted) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [mobileMounted])
 
-  const selectCategory = (category: (typeof PROJECT_CATEGORIES)[number]) => {
-    setServicesOpen(false)
-    setMobileOpen(false)
-    navigate(`/projects#${category.slug}`)
-  }
+  // Move focus into the panel and support Escape to close
+  useEffect(() => {
+    if (!mobileOpen) return
+    closeButtonRef.current?.focus()
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMobile()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [mobileOpen, closeMobile])
+
+  // Clear any pending close timer on unmount
+  useEffect(() => clearCloseTimer, [clearCloseTimer])
+
+  const onNavItem = useCallback(
+    (item: (typeof NAV_ITEMS)[number]) => {
+      closeMobile(false)
+      navigate(item.target)
+    },
+    [closeMobile, navigate],
+  )
+
+  const selectCategory = useCallback(
+    (category: (typeof PROJECT_CATEGORIES)[number]) => {
+      setServicesOpen(false)
+      closeMobile(false)
+      navigate(`/projects#${category.slug}`)
+    },
+    [closeMobile, navigate],
+  )
 
   return (
     <>
@@ -108,62 +168,112 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile: hamburger + dropdown */}
-      <div ref={mobileRef} className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
+      {/* Mobile: compact bar + full-screen slide-over menu */}
+      <div className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
           <span className="font-black uppercase text-lg tracking-tight">{SITE_NAME_UPPER}</span>
         </Link>
 
         <button
+          ref={menuButtonRef}
           type="button"
-          aria-label="Menu"
+          aria-label="Open menu"
           aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((open) => !open)}
-          className={`w-11 h-11 flex items-center justify-center border-4 border-black shadow-neo-sm transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none ${
-            mobileOpen ? 'bg-neo-accent text-white' : 'bg-neo-cream text-black'
-          }`}
+          aria-controls="mobile-menu"
+          onClick={openMobile}
+          className="w-11 h-11 flex items-center justify-center border-4 border-black shadow-neo-sm bg-neo-cream text-black transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
         >
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          <Menu size={18} />
         </button>
 
-        {mobileOpen && (
-          <div className="absolute right-0 top-full mt-2 w-64 bg-white border-4 border-black shadow-neo-lg p-2 z-50">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.label}
-                type="button"
-                onClick={() => onNavItem(item)}
-                className="block w-full text-left px-3 py-2.5 font-bold uppercase text-sm hover:bg-neo-secondary transition-colors duration-100"
+        {mobileMounted && (
+          <div
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            className={`fixed inset-0 z-[60] sm:hidden flex flex-col bg-neo-cream bg-grid-lines transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none ${
+              mobileOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
+            {/* Panel top bar */}
+            <div className="flex items-center justify-between border-b-4 border-black px-3 py-2 shrink-0 bg-neo-cream">
+              <Link
+                to="/"
+                onClick={() => closeMobile(false)}
+                className="flex items-center gap-2 min-w-0"
               >
-                {item.label}
-              </button>
-            ))}
+                <Logo />
+                <span className="font-black uppercase text-lg tracking-tight truncate">
+                  {SITE_NAME_UPPER}
+                </span>
+              </Link>
 
-            <div className="h-1 bg-black my-2" />
-
-            <p className="px-3 py-1 text-xs font-bold uppercase tracking-widest text-black/50">Services</p>
-            {PROJECT_CATEGORIES.map((category) => (
               <button
-                key={category.slug}
+                ref={closeButtonRef}
                 type="button"
-                onClick={() => selectCategory(category)}
-                className="block w-full text-left px-3 py-2 font-bold text-sm hover:bg-neo-secondary transition-colors duration-100"
+                aria-label="Close menu"
+                onClick={() => closeMobile()}
+                className="w-11 h-11 shrink-0 flex items-center justify-center border-4 border-black shadow-neo-sm bg-neo-accent text-black transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
               >
-                {category.label}
+                <X size={18} />
               </button>
-            ))}
+            </div>
 
-            <div className="h-1 bg-black my-2" />
+            {/* Scrollable panel body */}
+            <div className="flex-1 overflow-y-auto px-3 py-4 flex flex-col gap-4">
+              {/* Main menu items */}
+              <div className="flex flex-col gap-1">
+                {NAV_ITEMS.map((item) => (
+                  <button
+                    key={item.label}
+                    type="button"
+                    onClick={() => onNavItem(item)}
+                    className="flex w-full items-center justify-between gap-3 text-left px-3 py-3 font-black uppercase text-lg tracking-tight border-4 border-black bg-white shadow-neo-sm hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight size={18} aria-hidden />
+                  </button>
+                ))}
+              </div>
 
-            <button
-              type="button"
-              {...TALLY_ATTRS}
-              onClick={() => setMobileOpen(false)}
-              className="w-full bg-neo-accent text-black font-bold uppercase text-sm px-4 py-2.5 border-4 border-black shadow-neo-sm active:translate-x-1 active:translate-y-1 active:shadow-none hover:bg-[#ff5252] transition-all duration-100"
-            >
-              Start a project
-            </button>
+              <div className="border-t-4 border-black" />
+
+              {/* Services */}
+              <div className="flex flex-col gap-1">
+                <p className="px-1 py-1 text-xs font-black uppercase tracking-widest text-black/50">
+                  Services
+                </p>
+                {PROJECT_CATEGORIES.map((category, i) => (
+                  <button
+                    key={category.slug}
+                    type="button"
+                    onClick={() => selectCategory(category)}
+                    className="flex w-full items-center gap-3 text-left px-3 py-2.5 font-bold text-sm border-4 border-black bg-white shadow-neo-sm hover:bg-neo-secondary active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+                  >
+                    <span className="font-black text-xs text-black/40">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>{category.label}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="border-t-4 border-black" />
+
+              {/* CTA */}
+              <div className="pb-4">
+                <button
+                  type="button"
+                  {...TALLY_ATTRS}
+                  onClick={() => closeMobile(false)}
+                  className="w-full bg-neo-accent text-black font-black uppercase text-base tracking-wide px-4 py-3 border-4 border-black shadow-neo-sm hover:bg-[#ff5252] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+                >
+                  Start a project
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
