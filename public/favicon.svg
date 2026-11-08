@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="AVEDIKA AI logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="KAYITS &amp; Co. logo">
   <rect width="256" height="256" fill="#FFD93D" stroke="#000" stroke-width="10" />
-  <path d="M 168 40 L 36 232 L 94 232 L 145 158 L 145 232 L 191 232 L 191 40 Z" fill="#000" />
+  <path d="M 60 40 H 104 V 112 L 170 40 H 216 L 136 128 L 220 216 H 172 L 104 144 V 216 H 60 Z" fill="#000" />
 </svg>

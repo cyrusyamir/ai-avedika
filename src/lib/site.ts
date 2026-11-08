@@ -1,5 +1,9 @@
-export const SITE_NAME = 'Avedika'
-export const SITE_DOMAIN = 'avedika.com'
-export const CONTACT_EMAIL = 'info@avedika.com'
+export const SITE_NAME = 'KAYITS & Co.'
+export const SITE_NAME_UPPER = 'KAYITS & CO.'
+export const SITE_LEGAL_NAME = 'KAYITS'
+export const SITE_DOMAIN = 'kayits.org'
+export const SITE_URL = 'https://kayits.org'
+export const CONTACT_EMAIL = 'hello@kayits.org'
+export const LINKEDIN_URL = 'https://www.linkedin.com/company/kayits-co/'
 export const SITE_TAGLINE =
   'Turning human input into valuable data — AI data collection, transcription, annotation and validation services at scale.'

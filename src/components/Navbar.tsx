@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from 'lucide-react'
 import Logo from './Logo'
 import { TALLY_ATTRS } from '../lib/tally'
 import { PROJECT_CATEGORIES } from '../lib/projects'
+import { SITE_NAME_UPPER } from '../lib/site'
 
 const NAV_ITEMS: { label: string; target: string }[] = [
   { label: 'Our story', target: '/about' },
@@ -49,7 +50,7 @@ export default function Navbar() {
         {/* Left: Logo + brand */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
-          <span className="font-black uppercase text-lg tracking-tight">AVEDIKA AI</span>
+          <span className="font-black uppercase text-lg tracking-tight">{SITE_NAME_UPPER}</span>
         </Link>
 
         {/* Center: links */}
@@ -111,7 +112,7 @@ export default function Navbar() {
       <div ref={mobileRef} className="sm:hidden relative flex items-center justify-between bg-neo-cream border-4 border-black shadow-neo-sm px-3 py-2 w-full">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Logo />
-          <span className="font-black uppercase text-lg tracking-tight">AVEDIKA AI</span>
+          <span className="font-black uppercase text-lg tracking-tight">{SITE_NAME_UPPER}</span>
         </Link>
 
         <button

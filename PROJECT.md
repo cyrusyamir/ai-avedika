@@ -1,8 +1,8 @@
-# Avedika — AI Data Services Platform
+# KAYITS & Co. — AI Data Services Platform
 
-Production site: **https://ai.avedika.com** (Vercel subdomain). Parent site `avedika.com` is already live and independent.
+Production site: **https://kayits.org** (Vercel). The previous `ai.avedika.com` domain 301-redirects here.
 
-Avedika is the AI data-services arm of avedika.com — a static marketing + recruitment site covering transcription, annotation, data collection, and audio/video recording services, plus a jobs board.
+KAYITS & Co. is the AI data-services brand of KAYITS — a static marketing + recruitment site covering transcription, annotation, data collection, and audio/video recording services, plus a jobs board.
 
 ---
 
@@ -18,8 +18,8 @@ Avedika is the AI data-services arm of avedika.com — a static marketing + recr
 | Forms | Tally.so popup widget (external script, no backend) |
 | Jobs content | Markdown files parsed at build time via `import.meta.glob` |
 | Hosting / CDN | Vercel (static SPA) |
-| Git / CI | GitHub (`cyrusyamir/ai-avedika`), Vercel Git integration (auto-deploy on push) |
-| DNS | Porkbun (CNAME `ai` → `cname.vercel-dns.com`) |
+| Git / CI | GitHub + Vercel Git integration (auto-deploy on push) |
+| Domain | `kayits.org`, connected to the Vercel project |
 
 **No backend, no database, no environment variables.** The site is a fully static SPA; all content lives in TypeScript constants or Markdown files.
 
@@ -28,10 +28,12 @@ Avedika is the AI data-services arm of avedika.com — a static marketing + recr
 ## 2. Design Style
 
 ### Brand
-- **Name:** Avedika (formerly Forma)
+- **Name:** KAYITS & Co. (legal entity: KAYITS)
+- **Wordmark:** `KAYITS & CO.` in the navbar and footer
 - **Tagline:** "Turning human input into valuable data"
-- **Emails:** `contact.ai@avedika.com` (general), `info.ai@avedika.com` (jobs)
-- **Logo:** inline SVG — a black geometric "A" built from two triangles (`src/components/Logo.tsx`)
+- **Email:** `hello@kayits.org`
+- **LinkedIn:** https://www.linkedin.com/company/kayits-co/
+- **Logo:** inline SVG — a black geometric "K" on a yellow tile (`public/favicon.svg`)
 
 ### Typography
 - Primary: **Inter** (300–700) — all body and headings
@@ -57,7 +59,7 @@ Avedika is the AI data-services arm of avedika.com — a static marketing + recr
 - **Home hero:** full-screen autoplay video loop (`public/hero_video.mp4`, muted, playsInline), overlay navbar + glass headline card, "Apply for job" CTA
 - **Navbar:** frosted-glass pill containing logo + links ("Our story", "Expertise", "Apply for work"), "Domains" dropdown, "Start a project" button; mobile hamburger (black circle, active = `#FDFCF9` + 1px border)
 - **UnderConstructionBanner:** home only, absolute top-center, pulsing green dot, dismissible
-- **Footer:** horizontal/left-aligned two rows — logo + tagline, labeled emails, "Additional links" (Terms & Conditions, Privacy Policy), copyright row
+- **Footer:** horizontal/left-aligned rows — logo + tagline + site URL, contact email with envelope icon and LinkedIn button, page links (Terms & Conditions, Privacy Policy), copyright row
 - **Pages:** `/` Home, `/about`, `/jobs`, `/jobs/:slug`, `/projects`, `/projects/:domain`, `/terms`, `/privacy`; unknown paths fall back to Home
 
 ### Forms (Tally)
@@ -74,7 +76,7 @@ Avedika is the AI data-services arm of avedika.com — a static marketing + recr
 ├── jobs/*.md                    # job postings (markdown, parsed at build)
 ├── src/
 │   ├── lib/
-│   │   ├── site.ts              # SITE_NAME, emails, tagline
+│   │   ├── site.ts              # brand name, domain, email, LinkedIn, tagline
 │   │   ├── projects.ts          # DOMAINS + PROJECTS data (typed)
 │   │   ├── jobs.ts              # markdown parser → Job[] + jobSlug()
 │   │   └── tally.ts             # TALLY_ATTRS (popup form config)
@@ -116,7 +118,8 @@ Avedika is the AI data-services arm of avedika.com — a static marketing + recr
 
 ### Deployment (Vercel)
 1. Push to GitHub `main` → Vercel Git integration builds `npm run build`, serves `dist/`.
-2. Domain: Vercel project → Settings → Domains → `ai.avedika.com`; Porkbun DNS **CNAME** `ai` → `cname.vercel-dns.com` (TTL 600). SSL auto-provisioned; Porkbun nameservers unchanged.
+2. Domain: `kayits.org` is connected to the Vercel project; SSL is auto-provisioned.
+3. Legacy domain: keep `ai.avedika.com` on the project and configure a permanent **301 redirect** to `https://kayits.org` in Vercel → Settings → Domains.
 
 ### Local commands
 ```bash

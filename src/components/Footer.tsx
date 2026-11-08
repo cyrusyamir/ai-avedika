@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
+import { Linkedin, Mail } from 'lucide-react'
 import Logo from './Logo'
-import { SITE_NAME, CONTACT_EMAIL, SITE_TAGLINE } from '../lib/site'
+import {
+  SITE_NAME,
+  SITE_DOMAIN,
+  SITE_URL,
+  CONTACT_EMAIL,
+  LINKEDIN_URL,
+  SITE_TAGLINE,
+} from '../lib/site'
 
 const PAGE_LINKS = [
   { label: 'Our story', target: '/about' },
@@ -21,6 +29,12 @@ export default function Footer() {
             <span className="text-lg font-black uppercase tracking-tight text-black">{SITE_NAME}</span>
           </div>
           <p className="text-sm font-bold text-black/70 max-w-xs text-center sm:text-left">{SITE_TAGLINE}</p>
+          <a
+            href={SITE_URL}
+            className="text-xs font-black uppercase tracking-widest text-black/60 hover:bg-neo-accent hover:text-black px-1 transition-colors duration-100"
+          >
+            {SITE_DOMAIN}
+          </a>
         </div>
 
         {/* Column 2: General — page links */}
@@ -42,12 +56,24 @@ export default function Footer() {
         {/* Column 3: Contact */}
         <div className="flex flex-col items-center sm:items-start gap-2">
           <span className="text-xs font-black uppercase tracking-widest text-black/50">Contact</span>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
-          >
-            {CONTACT_EMAIL}
-          </a>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="inline-flex items-center gap-2 bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+            >
+              <Mail size={16} strokeWidth={3} aria-hidden />
+              {CONTACT_EMAIL}
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="KAYITS & Co. on LinkedIn"
+              className="w-10 h-10 bg-white border-4 border-black shadow-neo-sm flex items-center justify-center hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
+            >
+              <Linkedin size={18} strokeWidth={3} aria-hidden />
+            </a>
+          </div>
         </div>
       </div>
 
