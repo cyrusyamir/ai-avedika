@@ -25,7 +25,7 @@ export default function LegalCard({
           {title}
         </h1>
         <span className="mt-8 inline-block bg-white border-4 border-black shadow-neo-sm rotate-[-1deg] px-4 py-2 font-black uppercase text-xs tracking-widest text-black">
-          Last updated: September 2026
+          Last updated: November 2026
         </span>
       </SubPageBanner>
 

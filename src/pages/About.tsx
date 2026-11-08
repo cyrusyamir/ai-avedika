@@ -30,7 +30,7 @@ export default function About() {
         </h1>
         <div className="mt-10 flex flex-col sm:flex-row items-start gap-6 max-w-3xl">
           <span className="bg-black text-white border-4 border-black shadow-neo-md rotate-[-2deg] px-5 py-3 font-black uppercase text-sm tracking-widest">
-            The AI data-services arm of {SITE_NAME.toLowerCase()}.com
+            The AI data-services arm of {SITE_NAME}
           </span>
           <ArrowRight
             aria-hidden

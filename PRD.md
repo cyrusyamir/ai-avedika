@@ -1,19 +1,19 @@
-# Avedika — AI Data Services Platform (Product Requirements Document)
+# KAYITS & Co. — AI Data Services Platform (Product Requirements Document)
 
-Live: **https://ai.avedika.com** · Parent site: `avedika.com`
+Live: **https://kayits.org**
 
 ---
 
 ## 1. Overview
 
-Avedika is the AI data-services arm of avedika.com — offering end-to-end transcription,
+KAYITS & Co. is the AI data-services brand of KAYITS — offering end-to-end transcription,
 annotation, data collection, and audio/video recording services at scale, powered by vetted
 freelance specialists.
 
 This product is **a single static marketing + recruitment website**. It serves two distinct
 audiences from one surface:
 
-1. **Clients / buyers** of AI training data — who evaluate Avedika's credibility, explore
+1. **Clients / buyers** of AI training data — who evaluate KAYITS & Co.'s credibility, explore
    capabilities, and start a project.
 2. **Freelance specialists / job seekers** — who browse open roles, review requirements, and apply.
 
@@ -25,11 +25,11 @@ or applicant-tracking system.
 
 ## 2. Problem Statement
 
-Avedika must win client engagements and recruit freelance specialists, but has neither an
+KAYITS & Co. must win client engagements and recruit freelance specialists, but has neither an
 existing hiring infrastructure nor a need for a custom backend.
 
-- **Clients cannot easily assess** Avedika's range of data services, its domain expertise, or
-  its quality bar before reaching out — so the site must position Avedika as a credible vendor.
+- **Clients cannot easily assess** KAYITS & Co.'s range of data services, its domain expertise, or
+  its quality bar before reaching out — so the site must position KAYITS & Co. as a credible vendor.
 - **Freelancers cannot discover** open work or understand what a role involves — so the site must
   make roles findable, reviewable, and easy to apply to.
 - **The team needs to publish and edit job postings quickly** without engineering involvement
@@ -46,14 +46,14 @@ or login systems to maintain.
 |---|---|---|
 | **Data Buyer / ML Engineer** | Someone sourcing training data for speech, vision, or NLP systems at any company size. | Assess capability and credibility; understand service scope; request a quote/start a project. |
 | **Freelance Specialist / Job Seeker** | A prospective worker (e.g. transcriptionist, annotator, linguist, recorder). | Discover open roles; understand requirements and pay/format; apply. |
-| **Site Admin / Recruiter** | The Avedika team member who manages content. | Publish/edit job postings and site copy fast and safely. |
+| **Site Admin / Recruiter** | The KAYITS & Co. team member who manages content. | Publish/edit job postings and site copy fast and safely. |
 
 ---
 
 ## 4. User Stories
 
 - As a **data buyer**, I can view the services and case studies on the site so I can quickly
-  assess whether Avedika can handle my project.
+  assess whether KAYITS & Co. can handle my project.
 - As a **data buyer**, I can open the "Start a project" form so I can request a plan for
   collection, transcription, or annotation.
 - As a **job seeker**, I can browse the list of open roles so I can find relevant opportunities.
@@ -132,7 +132,7 @@ or login systems to maintain.
 ## 7. Success Metrics
 
 **Qualitative**
-- Site establishes Avedika as a credible AI data-services vendor (clients reach out).
+- Site establishes KAYITS & Co. as a credible AI data-services vendor (clients reach out).
 - New job postings can be published in minutes with no engineering involvement.
 - Visitors can complete the intended journey (browse → evaluate → contact/apply).
 

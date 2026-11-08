@@ -1,8 +1,8 @@
-# Avedika — AI Data Services Platform
+# KAYITS & Co. — AI Data Services Platform
 
-A static marketing + recruitment website for **Avedika**, the AI data-services arm of avedika.com. We offer end-to-end transcription, annotation, data collection, and audio/video recording services, and run a jobs board for freelance specialists.
+A static marketing + recruitment website for **KAYITS & Co.** We offer end-to-end transcription, annotation, data collection, and audio/video recording services, and run a jobs board for freelance specialists.
 
-**Live:** https://ai.avedika.com
+**Live:** https://kayits.org
 
 ## Overview
 
@@ -14,7 +14,7 @@ A static marketing + recruitment website for **Avedika**, the AI data-services a
 
 ## Tech Stack
 
-React 18 · TypeScript · Vite 6 · React Router 7 · Tailwind CSS 3 · lucide-react · Tally.so · hosted on Vercel (GitHub auto-deploy) · DNS via Porkbun
+React 18 · TypeScript · Vite 6 · React Router 7 · Tailwind CSS 3 · lucide-react · Tally.so · hosted on Vercel (GitHub auto-deploy)
 
 ## Local Development
 

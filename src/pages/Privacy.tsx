@@ -1,4 +1,5 @@
 import LegalCard, { LegalBlock } from '../components/LegalCard'
+import { CONTACT_EMAIL, SITE_DOMAIN, SITE_NAME, SITE_URL } from '../lib/site'
 
 export default function Privacy() {
   return (
@@ -10,9 +11,9 @@ export default function Privacy() {
     >
       <LegalBlock title="Data we collect">
         <p>
-          We collect information you provide directly, such as your name, email address and the
-          details of your project when you contact us. We also collect basic analytics data, such
-          as pages visited, to improve the site.
+          {SITE_NAME} collects information you provide directly, such as your name, email address
+          and the details of your project when you contact us. We also collect basic analytics
+          data, such as pages visited, to improve the site.
         </p>
       </LegalBlock>
       <LegalBlock title="How we use your data">
@@ -56,10 +57,17 @@ export default function Privacy() {
         <p>
           For privacy enquiries, email{' '}
           <a
-            href="mailto:info@avedika.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="bg-neo-accent text-black font-black uppercase text-xs tracking-wide px-3 py-1 border-4 border-black italic hover:bg-[#ff5252] transition-colors duration-100"
           >
-            info@avedika.com
+            {CONTACT_EMAIL}
+          </a>
+          , or visit us at{' '}
+          <a
+            href={SITE_URL}
+            className="bg-neo-accent text-black font-black uppercase text-xs tracking-wide px-3 py-1 border-4 border-black italic hover:bg-[#ff5252] transition-colors duration-100"
+          >
+            {SITE_DOMAIN}
           </a>
           .
         </p>
