@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom'
 import { Linkedin, Mail } from 'lucide-react'
 import Logo from './Logo'
+import WhatsAppIcon from './WhatsAppIcon'
 import {
   SITE_NAME,
   SITE_DOMAIN,
   SITE_URL,
   CONTACT_EMAIL,
   LINKEDIN_URL,
+  WHATSAPP_URL,
   SITE_TAGLINE,
 } from '../lib/site'
+
+const CONTACT_LINK =
+  'inline-flex w-fit items-center gap-2 bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100'
 
 const PAGE_LINKS = [
   { label: 'Our story', target: '/about' },
@@ -56,24 +61,34 @@ export default function Footer() {
         {/* Column 3: Contact */}
         <div className="flex flex-col items-center sm:items-start gap-2">
           <span className="text-xs font-black uppercase tracking-widest text-black/50">Contact</span>
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-2 bg-white border-4 border-black shadow-neo-sm font-bold text-sm px-4 py-2 hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
-            >
-              <Mail size={16} strokeWidth={3} aria-hidden />
-              {CONTACT_EMAIL}
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="KAYITS & Co. on LinkedIn"
-              className="w-10 h-10 bg-white border-4 border-black shadow-neo-sm flex items-center justify-center hover:bg-neo-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
-            >
-              <Linkedin size={18} strokeWidth={3} aria-hidden />
-            </a>
-          </div>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            aria-label="Email KAYITS & Co."
+            className={CONTACT_LINK}
+          >
+            <Mail size={16} strokeWidth={3} aria-hidden />
+            Email
+          </a>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="KAYITS & Co. on LinkedIn"
+            className={CONTACT_LINK}
+          >
+            <Linkedin size={16} strokeWidth={3} aria-hidden />
+            LinkedIn
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Join the KAYITS & Co. Whatsapp community"
+            className={CONTACT_LINK}
+          >
+            <WhatsAppIcon size={16} />
+            Whatsapp
+          </a>
         </div>
       </div>
 
