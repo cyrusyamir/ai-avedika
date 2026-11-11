@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import type { Job } from '../lib/jobs'
+import { jobSlug } from '../lib/jobs'
 import { TALLY_ATTRS } from '../lib/tally'
 
 const STRIP_STYLES = ['bg-neo-accent', 'bg-neo-secondary', 'bg-neo-muted']
 
-export default function JobCard({ job, index }: { job: any; index: number }) {
-  const slug = job.slug?.current || job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+export default function JobCard({ job, index }: { job: Job; index: number }) {
   return (
     <article className="relative bg-white text-black border-4 border-black shadow-neo-sm hover:-translate-y-1 hover:shadow-neo-md transition-all duration-200 ease-out pt-5 pb-10 overflow-visible">
       <span className="absolute -top-5 -left-5 w-14 h-14 bg-neo-accent border-4 border-black shadow-neo-sm rotate-[-4deg] flex items-center justify-center font-black text-xl text-black">
@@ -19,9 +20,9 @@ export default function JobCard({ job, index }: { job: any; index: number }) {
         <p className="text-sm sm:text-base font-bold text-black/70 leading-relaxed line-clamp-2">
           {job.summary}
         </p>
-        {job.highlights && job.highlights.length > 0 && (
+        {job.highlights.length > 0 && (
           <ul className="flex flex-wrap gap-2">
-            {job.highlights.map((highlight: string, h: number) => (
+            {job.highlights.map((highlight, h) => (
               <li
                 key={h}
                 className="font-black uppercase text-[11px] tracking-widest px-3 py-1 border-4 border-black bg-neo-cream text-black"
@@ -32,7 +33,7 @@ export default function JobCard({ job, index }: { job: any; index: number }) {
           </ul>
         )}
         <Link
-          to={`/jobs/${slug}`}
+          to={`/jobs/${jobSlug(job)}`}
           className="w-fit mt-auto text-sm font-bold uppercase tracking-wide text-black px-2 py-1 hover:bg-black hover:text-neo-secondary transition-colors duration-100"
         >
           View full details →
