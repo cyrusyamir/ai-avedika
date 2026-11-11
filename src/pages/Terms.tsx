@@ -1,7 +1,13 @@
+import { useEffect } from 'react'
 import LegalCard, { LegalBlock } from '../components/LegalCard'
+import { setOG } from '../components/SubPageLayout'
 import { CONTACT_EMAIL, SITE_DOMAIN, SITE_LEGAL_NAME, SITE_NAME, SITE_URL } from '../lib/site'
 
 export default function Terms() {
+  useEffect(() => {
+    setOG('terms')
+  }, [])
+
   return (
     <LegalCard
       title="Terms & Conditions"

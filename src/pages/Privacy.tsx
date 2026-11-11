@@ -1,7 +1,13 @@
+import { useEffect } from 'react'
 import LegalCard, { LegalBlock } from '../components/LegalCard'
+import { setOG } from '../components/SubPageLayout'
 import { CONTACT_EMAIL, SITE_DOMAIN, SITE_NAME, SITE_URL } from '../lib/site'
 
 export default function Privacy() {
+  useEffect(() => {
+    setOG('privacy')
+  }, [])
+
   return (
     <LegalCard
       title="Privacy Policy"
